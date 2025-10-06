@@ -1,21 +1,54 @@
-<table class="w-full text-sm card p-6">
-  <thead class="text-left text-muted">
-    <tr>
-      <th class="py-2">Model</th>
-      <th>Accuracy</th>
-      <th>Macro F1</th>
-      <th>Micro F1</th>
-      <th>Cost / req</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr><td>Qwen3-4B</td><td>0.481</td><td>0.5104</td><td>0.5390</td><td>$0.0012–$0.0023</td></tr>
-    <tr><td>Seer (Qwen3-4B)</td><td>0.777</td><td>0.8600</td><td>0.8700</td><td>$0.0012–$0.0023</td></tr>
-    <tr><td>GPT-5</td><td>0.776</td><td>0.8780</td><td>0.8660</td><td>$0.00812</td></tr>
-    <tr><td>GPT-5-chat</td><td>0.750</td><td>0.8650</td><td>0.8480</td><td>$0.00812</td></tr>
-    <tr><td>GPT-5-mini</td><td>0.733</td><td>0.8680</td><td>0.8430</td><td>$0.001624</td></tr>
-    <tr><td>Claude 4 Sonnet</td><td>0.750</td><td>0.8540</td><td>0.8510</td><td>$0.0149</td></tr>
-    <tr><td>GPT-5-nano</td><td>0.628</td><td>0.7210</td><td>0.7520</td><td>$0.0003248</td></tr>
-    <tr><td>Seer (Qwen3-1.7B)</td><td>0.661</td><td>0.7633</td><td>0.7789</td><td>$0.0005–$0.0011</td></tr>
-  </tbody>
-</table>
+---
+import { benchmarks, monthlyEvalPricing } from '../content/copy';
+---
+<div class="space-y-6">
+  <table class="w-full text-sm card p-6">
+    <thead class="text-left text-muted">
+      <tr>
+        <th class="py-2">Model</th>
+        <th>Accuracy</th>
+        <th>Macro F1</th>
+        <th>Micro F1</th>
+      </tr>
+    </thead>
+    <tbody>
+      {benchmarks.map((b) => (
+        <tr>
+          <td>{b.model}</td>
+          <td>{b.accuracy.toFixed ? b.accuracy.toFixed(3) : b.accuracy}</td>
+          <td>{b.macroF1}</td>
+          <td>{b.microF1}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+
+  <table class="w-full text-sm card p-6">
+    <thead class="text-left text-muted">
+      <tr>
+        <th class="py-2">Monthly Evals</th>
+        <th>Seer-4B (low–high)</th>
+        <th>Seer-1.7B COGS (low–high)</th>
+        <th class="text-right">GPT-5</th>
+        <th class="text-right">GPT-5-mini</th>
+        <th class="text-right">GPT-5-nano</th>
+        <th class="text-right">Claude 3.5/4 Sonnet</th>
+        <th class="text-right">Claude 4 Opus</th>
+      </tr>
+    </thead>
+    <tbody>
+      {monthlyEvalPricing.map((row) => (
+        <tr>
+          <td>{row.monthlyEvals}</td>
+          <td>{row.seer4BLowHigh}</td>
+          <td>{row.seer1_7BCOGSLowHigh}</td>
+          <td class="text-right">{row.gpt5}</td>
+          <td class="text-right">{row.gpt5Mini}</td>
+          <td class="text-right">{row.gpt5Nano}</td>
+          <td class="text-right">{row.claudeSonnet}</td>
+          <td class="text-right">{row.claudeOpus}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>

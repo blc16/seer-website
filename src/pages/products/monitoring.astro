@@ -8,16 +8,15 @@ import MockScreenshot from '../../components/MockScreenshot.astro';
   <section class="container grid lg:grid-cols-2 gap-10 items-center py-16">
     <div>
       <h1 class="font-serif text-5xl">See retrieval drift before customers do.</h1>
-      <p class="mt-4 text-lg text-muted">Stream Seer’s evaluator scores from production traffic to watch recall, groundedness, and citation fidelity in real time—and trigger fixes before accuracy slips.</p>
-      <a href="/book-demo" class="inline-flex mt-6 rounded-full bg-brand text-white px-5 py-3">Book a demo</a>
+      <p class="mt-4 text-lg text-muted">Stream Seer’s evaluator scores from production traffic to watch recall, groundedness, and citation fidelity in real time and trigger fixes before accuracy slips.</p>
     </div>
-    <MockScreenshot label="Live KPI charts" />
+    <img src="/assets/perf_chats_1.webp" alt="Live KPI charts" class="rounded-2xl shadow-card" loading="eager" />
   </section>
 
   <Section title="Live KPIs">
     <div class="grid md:grid-cols-2 gap-6">
-      <MockScreenshot label="Trend dashboards" aspect="4 / 3" />
-      <MockScreenshot label="Recall cards" aspect="4 / 3" />
+      <img src="/assets/perf_chats_1.webp" alt="Trend dashboards" class="card" loading="lazy" />
+      <img src="/assets/perf_charts_2.webp" alt="Recall cards" class="card" loading="lazy" />
     </div>
   </Section>
 
@@ -31,7 +30,7 @@ import MockScreenshot from '../../components/MockScreenshot.astro';
 
   <Section title="Per-source breakdown">
     <p class="text-muted max-w-3xl">Understand how embedding, BM25/hybrid, knowledge graph, and web sources contribute to answers. Drill into per-source recall, citation fidelity, hops, and docs per query to keep retrieval balanced.</p>
-    <MockScreenshot label="Source breakdown cards" aspect="4 / 3" className="mt-6" />
+    <img src="/assets/perf_charts_2.webp" alt="Source breakdown cards" class="card mt-6" loading="lazy" />
   </Section>
 
   <Section title="Designed for regulated AI products">

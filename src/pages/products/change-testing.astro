@@ -8,10 +8,9 @@ import MockScreenshot from '../../components/MockScreenshot.astro';
   <section class="container grid lg:grid-cols-2 gap-10 items-center py-16">
     <div>
       <h1 class="font-serif text-5xl">A/B test retrieval system changes instantly.</h1>
-      <p class="mt-4 text-lg text-muted">Seer auto-grades unlabeled diffs on every PR, compares recall, precision, and groundedness lift, and tells you which variant wins before you merge.</p>
-      <a href="/book-demo" class="inline-flex mt-6 rounded-full bg-brand text-white px-5 py-3">Book a demo</a>
+      <p class="mt-4 text-lg text-muted">Seer evaluates diffs on unlabeled production traffic, compares recall, precision, and groundedness lift, and tells you which variant wins before you merge.</p>
     </div>
-    <MockScreenshot label="Variant verdict card" />
+    <img src="/assets/badge_variant_wins.webp" alt="Variant wins card" class="rounded-2xl shadow-card" loading="eager" />
   </section>
 
   <Section title="How it works">
@@ -34,7 +33,7 @@ import MockScreenshot from '../../components/MockScreenshot.astro';
   </Section>
 
   <Section title="Example verdict">
-    <MockScreenshot label="A/B funnel analytics" aspect="4 / 3" />
+    <img src="/assets/ab_funnel.webp" alt="A/B funnel analytics" class="card" loading="lazy" />
   </Section>
 
   <Section title="Integrate in minutes">
