@@ -1,0 +1,12 @@
+---
+const { title = 'Ready to launch self-improving search?', description = 'Book a 30-min walkthrough with live evaluator metrics on your data.', cta = 'Book a demo', href = '/book-demo' } = Astro.props;
+---
+<section class="container py-14">
+  <div class="card p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+    <div>
+      <h3 class="font-serif text-3xl">{title}</h3>
+      <p class="text-muted mt-2">{description}</p>
+    </div>
+    <a href={href} class="inline-flex items-center rounded-full bg-neutral-900 text-white px-6 py-3">{cta}</a>
+  </div>
+</section>

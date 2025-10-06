@@ -1,0 +1,71 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import Section from '../components/Section.astro';
+import MetricCard from '../components/MetricCard.astro';
+import ComparisonTable from '../components/ComparisonTable.astro';
+import CTA from '../components/CTA.astro';
+---
+<Base title="Seer — Automated search evaluation" description="Self-improving search systems powered by compact evaluator models for change testing and production monitoring.">
+  <Hero
+    title="Automated search evaluation for reliable AI Agents."
+    subtitle="Automated change testing and production monitoring. Compact evaluators grade retrieval, verify citations, and surface coverage gaps so your AI answers stay accurate."
+    visualLabel="Evaluator dashboard preview"
+    img="/assets/perf_chats_1.webp" />
+
+  <Section title="Why Seer">
+    <div class="grid md:grid-cols-3 gap-6">
+      <MetricCard title="Scalable SOTA-level accuracy" desc="Our 4B evaluator matches GPT-5 on HotpotQA search context evaluation while staying lightweight enough to deploy anywhere at scale." />
+      <MetricCard title="A/B test retrieval changes instantly" desc="Evaluate diffs on unlabeled production traffic and wire evaluation into CI or staging rollouts." />
+      <MetricCard title="Monitor production quality continuously" desc="Track recall, groundedness, and coverage in real time so regressions never blindside customers." />
+    </div>
+  </Section>
+
+  <Section title="What teams automate with Seer">
+    <div class="grid md:grid-cols-2 gap-6 text-sm">
+      <div class="card p-6 space-y-2">
+        <h3 class="font-semibold">Change testing</h3>
+        <p class="text-muted">Evaluate retrieval algorithm updates on unlabeled data, measure lift across recall, precision, and groundedness, and ship the winning variant confidently.</p>
+      </div>
+      <div class="card p-6 space-y-2">
+        <h3 class="font-semibold">Production monitoring</h3>
+        <p class="text-muted">Stream evaluator scores from live traffic to catch drift, route alerts, and keep a pulse on mission-critical search experiences.</p>
+      </div>
+      <div class="card p-6 space-y-2">
+        <h3 class="font-semibold">Citation robustness</h3>
+        <p class="text-muted">Audit whether every answer cites the passages that actually cover each fact—perfect for regulated workflows in finance, healthcare, and legal.</p>
+      </div>
+      <div class="card p-6 space-y-2">
+        <h3 class="font-semibold">Index gap analysis</h3>
+        <p class="text-muted">Use Seer’s atomic fact breakdowns to spot missing content categories and prioritize new documents or data sources.</p>
+      </div>
+      <div class="card p-6 space-y-2 md:col-span-2">
+        <h3 class="font-semibold">Continuous search improvements</h3>
+        <p class="text-muted">Feed evaluator artifacts into embedding retraining, cache tuning, and routing logic so search quality improves the more your users interact.</p>
+      </div>
+    </div>
+  </Section>
+
+  <Section title="Benchmarks">
+    <ComparisonTable />
+  </Section>
+
+  <Section title="Why small, open evaluators win">
+    <div class="grid md:grid-cols-3 gap-6 text-sm">
+      <div class="card p-6 space-y-2">
+        <h3 class="font-semibold">Accuracy without lock-in</h3>
+        <p class="text-muted">Fine-tuned open models deliver SOTA accuracy while staying private to your environment.</p>
+      </div>
+      <div class="card p-6 space-y-2">
+        <h3 class="font-semibold">Lower cost & faster feedback</h3>
+        <p class="text-muted">Run millions of evaluations for a fraction of closed-model pricing, enabling tighter iteration loops.</p>
+      </div>
+      <div class="card p-6 space-y-2">
+        <h3 class="font-semibold">Deploy anywhere</h3>
+        <p class="text-muted">Small models scale on commodity GPUs or your own secure cloud with headroom for customization.</p>
+      </div>
+    </div>
+  </Section>
+
+  <CTA />
+</Base>
