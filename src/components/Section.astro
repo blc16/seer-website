@@ -1,0 +1,7 @@
+---
+const { title } = Astro.props;
+---
+<section class="container py-14">
+  {title && <h2 class="font-serif text-3xl mb-6">{title}</h2>}
+  <slot />
+</section>

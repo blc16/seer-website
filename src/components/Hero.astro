@@ -1,0 +1,25 @@
+---
+import MockScreenshot from './MockScreenshot.astro';
+
+const {
+  title,
+  subtitle,
+  visualLabel = 'Seer dashboard preview'
+} = Astro.props;
+---
+<section class="container grid lg:grid-cols-2 gap-10 items-center py-16">
+  <div>
+    <h1 class="font-serif text-5xl leading-tight">{title}</h1>
+    <p class="mt-4 text-lg text-muted">{subtitle}</p>
+    <div class="mt-8 flex gap-3">
+      <a href="/book-demo" class="inline-flex items-center rounded-full bg-brand text-white px-5 py-3">Book a demo</a>
+      <a href="/products/change-testing" class="inline-flex items-center rounded-full bg-surface px-5 py-3">See products</a>
+    </div>
+    <div class="mt-6 flex flex-wrap gap-3">
+      <span class="chip">Atomic fact tracing</span>
+      <span class="chip">Citation audits</span>
+      <span class="chip">CI verdicts in minutes</span>
+    </div>
+  </div>
+  <MockScreenshot label={visualLabel} className="w-full" />
+</section>

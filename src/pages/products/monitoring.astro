@@ -1,0 +1,55 @@
+---
+import Base from '../../layouts/Base.astro';
+import Section from '../../components/Section.astro';
+import CTA from '../../components/CTA.astro';
+import MockScreenshot from '../../components/MockScreenshot.astro';
+---
+<Base title="Monitoring — Seer" description="Catch RAG drift before customers do with live evaluator KPIs and citation audits.">
+  <section class="container grid lg:grid-cols-2 gap-10 items-center py-16">
+    <div>
+      <h1 class="font-serif text-5xl">See retrieval drift before customers do.</h1>
+      <p class="mt-4 text-lg text-muted">Stream Seer’s evaluator scores from production traffic to watch recall, groundedness, and citation fidelity in real time—and trigger fixes before accuracy slips.</p>
+      <a href="/book-demo" class="inline-flex mt-6 rounded-full bg-brand text-white px-5 py-3">Book a demo</a>
+    </div>
+    <MockScreenshot label="Live KPI charts" />
+  </section>
+
+  <Section title="Live KPIs">
+    <div class="grid md:grid-cols-2 gap-6">
+      <MockScreenshot label="Trend dashboards" aspect="4 / 3" />
+      <MockScreenshot label="Recall cards" aspect="4 / 3" />
+    </div>
+  </Section>
+
+  <Section title="Alerting &amp; routing">
+    <div class="card p-6 space-y-4 text-sm text-muted">
+      <p>• Webhooks to trigger rollbacks or escalation workflows the moment groundedness drops.</p>
+      <p>• Email digests summarizing statistically significant shifts across recall, precision, and coverage.</p>
+      <p>• Slack notifications tuned to mission-critical intents so support teams see issues before tickets pile up.</p>
+    </div>
+  </Section>
+
+  <Section title="Per-source breakdown">
+    <p class="text-muted max-w-3xl">Understand how embedding, BM25/hybrid, knowledge graph, and web sources contribute to answers. Drill into per-source recall, citation fidelity, hops, and docs per query to keep retrieval balanced.</p>
+    <MockScreenshot label="Source breakdown cards" aspect="4 / 3" className="mt-6" />
+  </Section>
+
+  <Section title="Designed for regulated AI products">
+    <div class="grid md:grid-cols-3 gap-6 text-sm">
+      <div class="card p-6 space-y-2">
+        <h3 class="font-semibold">Citation robustness</h3>
+        <p class="text-muted">Verify that every surfaced fact ties back to a documented source—ideal for healthcare, legal, and finance workflows.</p>
+      </div>
+      <div class="card p-6 space-y-2">
+        <h3 class="font-semibold">Audit-ready trails</h3>
+        <p class="text-muted">Retain evaluator traces so compliance teams can inspect which passages justified each response.</p>
+      </div>
+      <div class="card p-6 space-y-2">
+        <h3 class="font-semibold">Scales securely</h3>
+        <p class="text-muted">Deploy on-prem or in your private cloud with small-footprint models that avoid third-party rate limits.</p>
+      </div>
+    </div>
+  </Section>
+
+  <CTA />
+</Base>

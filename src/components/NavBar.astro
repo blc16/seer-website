@@ -1,0 +1,18 @@
+---
+const links = [
+  { href: '/products/change-testing', label: 'Change testing' },
+  { href: '/products/monitoring', label: 'Monitoring' },
+  { href: '/book-demo', label: 'Book a demo' }
+];
+---
+<header class="sticky top-0 z-40 bg-white/85 backdrop-blur border-b border-gray-100">
+  <div class="container flex h-14 items-center justify-between">
+    <a href="/" class="font-serif text-2xl">Seer</a>
+    <nav class="hidden md:flex items-center gap-8">
+      {links.map((link) => (
+        <a class="text-sm text-muted hover:text-text" href={link.href}>{link.label}</a>
+      ))}
+    </nav>
+    <a href="/book-demo" class="ml-4 inline-flex items-center rounded-full bg-brand text-white px-4 py-2 text-sm">Book demo</a>
+  </div>
+</header>

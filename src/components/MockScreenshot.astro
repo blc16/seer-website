@@ -1,0 +1,10 @@
+---
+const { label = 'Product preview', aspect = '16 / 10', className = '' } = Astro.props;
+---
+<div
+  class={`relative overflow-hidden shadow-card rounded-2xl bg-gradient-to-br from-brand/15 via-white to-surface text-muted flex items-center justify-center text-sm font-medium ${className}`.trim()}
+  style={`aspect-ratio: ${aspect};`}
+>
+  <div class="absolute inset-0 opacity-70 bg-[radial-gradient(circle_at_top,_rgba(10,132,255,0.25),_transparent_60%)]"></div>
+  <span class="relative px-6 text-center">{label}</span>
+</div>

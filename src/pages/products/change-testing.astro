@@ -1,0 +1,65 @@
+---
+import Base from '../../layouts/Base.astro';
+import Section from '../../components/Section.astro';
+import CTA from '../../components/CTA.astro';
+import MockScreenshot from '../../components/MockScreenshot.astro';
+---
+<Base title="Change testing — Seer" description="A/B test retrieval updates instantly with automated evaluator verdicts wired into CI.">
+  <section class="container grid lg:grid-cols-2 gap-10 items-center py-16">
+    <div>
+      <h1 class="font-serif text-5xl">A/B test retrieval system changes instantly.</h1>
+      <p class="mt-4 text-lg text-muted">Seer auto-grades unlabeled diffs on every PR, compares recall, precision, and groundedness lift, and tells you which variant wins before you merge.</p>
+      <a href="/book-demo" class="inline-flex mt-6 rounded-full bg-brand text-white px-5 py-3">Book a demo</a>
+    </div>
+    <MockScreenshot label="Variant verdict card" />
+  </section>
+
+  <Section title="How it works">
+    <ol class="space-y-4 text-sm text-muted">
+      <li class="card p-5"><span class="font-semibold text-text">1. Hook into CI.</span> Capture candidate retrieval runs from GitHub Actions or your deploy pipeline without hand-labeling data.</li>
+      <li class="card p-5"><span class="font-semibold text-text">2. Seer evaluates every query.</span> Our evaluators map questions to atomic facts, track which documents answer them, and score groundedness and coverage.</li>
+      <li class="card p-5"><span class="font-semibold text-text">3. Ship the winning variant.</span> Receive verdicts, lift charts, and citations to unblock faster, safer launches.</li>
+    </ol>
+  </Section>
+
+  <Section title="Metrics we compute">
+    <ul class="grid md:grid-cols-3 gap-6 text-sm">
+      <li class="card p-5">Recall@k &amp; Precision@k</li>
+      <li class="card p-5">nDCG &amp; MRR</li>
+      <li class="card p-5">Groundedness &amp; hallucination rate</li>
+      <li class="card p-5">Citation accuracy &amp; robustness</li>
+      <li class="card p-5">Answerable (coverage)</li>
+      <li class="card p-5">Docs &amp; hops per query</li>
+    </ul>
+  </Section>
+
+  <Section title="Example verdict">
+    <MockScreenshot label="A/B funnel analytics" aspect="4 / 3" />
+  </Section>
+
+  <Section title="Integrate in minutes">
+    <div class="grid md:grid-cols-2 gap-6 text-sm">
+      <div class="card p-6 space-y-3">
+        <h3 class="font-semibold">GitHub Actions</h3>
+        <pre class="bg-surface text-xs text-muted p-4 rounded-xl overflow-x-auto">{`- uses: seer-ai/action@v1
+  with:
+    dataset: ci-sanity
+    baseline-run: $SEER_BASELINE_RUN
+    candidate-run: $SEER_CANDIDATE_RUN
+`}</pre>
+      </div>
+      <div class="card p-6 space-y-3">
+        <h3 class="font-semibold">Direct API</h3>
+        <pre class="bg-surface text-xs text-muted p-4 rounded-xl overflow-x-auto">{`POST /v1/evaluations
+{
+  "dataset": "ci-sanity",
+  "runs": ["baseline", "candidate"],
+  "metrics": ["recall@5", "groundedness", "citations"]
+}
+`}</pre>
+      </div>
+    </div>
+  </Section>
+
+  <CTA title="Plug Seer into your CI" description="Send rollouts, receive verdicts &amp; charts back." />
+</Base>
