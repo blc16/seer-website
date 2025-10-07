@@ -22,3 +22,31 @@
 .chip {
   @apply inline-flex items-center rounded-full px-2.5 py-1 text-xs font-medium bg-surface text-text;
 }
+
+/* Quick dark mode preview */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --container: 1200px;
+  }
+  body {
+    @apply bg-[#0B0E12] text-white;
+  }
+  .card {
+    @apply bg-[#11161c] shadow-none;
+  }
+  .chip {
+    @apply bg-[#1a2230] text-white;
+  }
+  .text-muted {
+    @apply text-gray-300 !important;
+  }
+  header.sticky, .border-gray-100 {
+    @apply border-gray-800;
+  }
+  .bg-surface {
+    @apply bg-[#1a2230] !important;
+  }
+  .text-text {
+    @apply text-white !important;
+  }
+}
