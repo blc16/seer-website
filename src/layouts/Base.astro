@@ -9,6 +9,9 @@ const {
 } = Astro.props;
 
 const ogImage = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='630' viewBox='0 0 1200 630'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%' stop-color='%23F6F7F9'/%3E%3Cstop offset='100%' stop-color='%230A84FF' stop-opacity='0.25'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect fill='url(%23g)' width='1200' height='630'/%3E%3Ctext x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-family='Inter, sans-serif' font-size='72' fill='%230E1217'%3ESeer%3C/text%3E%3C/svg%3E";
+const gaId = import.meta.env.PUBLIC_GA_ID || 'G-9BBVRKR6PQ';
+const phKey = import.meta.env.PUBLIC_POSTHOG_KEY;
+const phHost = import.meta.env.PUBLIC_POSTHOG_HOST || 'https://app.posthog.com';
 ---
 <html lang="en">
   <head>
@@ -22,6 +25,9 @@ const ogImage = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' wi
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:image" content={ogImage} />
+    {gaId && <script async src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}></script>}
+    {gaId && <script src="/ga.js" defer data-ga-id={gaId}></script>}
+    {phKey && <script src="/posthog.js" defer data-ph-key={phKey} data-ph-host={phHost}></script>}
   </head>
   <body class="font-sans text-text bg-white dark:bg-[#0B0E12] dark:text-white antialiased">
     <NavBar />
