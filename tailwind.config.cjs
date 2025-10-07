@@ -1,4 +1,5 @@
 module.exports = {
+  darkMode: 'media',
   content: ['./src/**/*.{astro,html,md,mdx,js,ts,jsx,tsx}'],
   theme: {
     extend: {

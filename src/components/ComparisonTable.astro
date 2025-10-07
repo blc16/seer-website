@@ -12,7 +12,9 @@ import { benchmarks, monthlyEvalPricing } from '../content/copy';
       </tr>
     </thead>
     <tbody>
-      {benchmarks.map((b) => (
+      {benchmarks
+        .filter((b) => b.model !== 'Claude 4 Sonnet')
+        .map((b) => (
         <tr>
           <td>{b.model}</td>
           <td>{b.accuracy.toFixed ? b.accuracy.toFixed(3) : b.accuracy}</td>
@@ -27,26 +29,22 @@ import { benchmarks, monthlyEvalPricing } from '../content/copy';
     <thead class="text-left text-muted">
       <tr>
         <th class="py-2">Monthly Evals</th>
-        <th>Seer-4B (low–high)</th>
-        <th>Seer-1.7B COGS (low–high)</th>
+        <th>Seer-4B</th>
+        <th>Seer-1.7B</th>
         <th class="text-right">GPT-5</th>
         <th class="text-right">GPT-5-mini</th>
         <th class="text-right">GPT-5-nano</th>
-        <th class="text-right">Claude 3.5/4 Sonnet</th>
-        <th class="text-right">Claude 4 Opus</th>
       </tr>
     </thead>
     <tbody>
       {monthlyEvalPricing.map((row) => (
         <tr>
           <td>{row.monthlyEvals}</td>
-          <td>{row.seer4BLowHigh}</td>
-          <td>{row.seer1_7BCOGSLowHigh}</td>
+          <td>{row.seer4B}</td>
+          <td>{row.seer1_7B}</td>
           <td class="text-right">{row.gpt5}</td>
           <td class="text-right">{row.gpt5Mini}</td>
           <td class="text-right">{row.gpt5Nano}</td>
-          <td class="text-right">{row.claudeSonnet}</td>
-          <td class="text-right">{row.claudeOpus}</td>
         </tr>
       ))}
     </tbody>
