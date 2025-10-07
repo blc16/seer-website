@@ -1,7 +1,7 @@
 export const heroCopy = {
-  title: 'Automated search evaluation for reliable AI Agents.',
+  title: 'Production-grade AI search',
   subtitle:
-    'Seer uses compact evaluator models to map questions to atomic facts, verify citations, and surface coverage gaps so you can ship accurate AI search experiences.'
+    'Auto-evaluate every retrieval, validate citations, and catch regressions before users do.'
 };
 
 export const benchmarks = [
