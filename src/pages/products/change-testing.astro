@@ -2,63 +2,57 @@
 import Base from '../../layouts/Base.astro';
 import Section from '../../components/Section.astro';
 import CTA from '../../components/CTA.astro';
-import MockScreenshot from '../../components/MockScreenshot.astro';
 ---
-<Base title="Change testing — Seer" description="A/B test retrieval updates instantly with automated evaluator verdicts wired into CI.">
+<Base title="Change Testing — Seer" description="Compare retrieval variants with statistical confidence. Ship the winner in 1 hour.">
   <section class="container grid lg:grid-cols-2 gap-10 items-center py-16">
     <div>
-      <h1 class="font-serif text-5xl">A/B test retrieval system changes instantly.</h1>
-      <p class="mt-4 text-lg text-muted">Seer evaluates diffs on unlabeled production traffic, compares recall, precision, and groundedness lift, and tells you which variant wins before you merge.</p>
+      <h1 class="font-serif text-5xl">Ship retrieval changes with confidence.</h1>
+      <p class="mt-4 text-lg text-muted">Compare embedding models, rerankers, or prompts on real traffic. Know which variant wins with statistical significance—in 1 hour, not 1 month.</p>
+      <div class="mt-8">
+        <a href="https://docs.seersearch.com/seer/change-testing" class="text-primary hover:underline">Learn how it works →</a>
+      </div>
     </div>
-    <img src="/assets/badge_variant_wins.webp" alt="Variant wins card" class="rounded-2xl shadow-card" loading="eager" />
+    <img src="/assets/ab-metrics.png" alt="A/B comparison" class="rounded-2xl shadow-card" loading="eager" />
   </section>
 
   <Section title="How it works">
-    <ol class="space-y-4 text-sm text-muted">
-      <li class="card p-5"><span class="font-semibold text-text">1. Hook into CI.</span> Capture candidate retrieval runs from GitHub Actions or your deploy pipeline without hand-labeling data.</li>
-      <li class="card p-5"><span class="font-semibold text-text">2. Seer evaluates every query.</span> Our evaluators map questions to atomic facts, track which documents answer them, and score groundedness and coverage.</li>
-      <li class="card p-5"><span class="font-semibold text-text">3. Ship the winning variant.</span> Receive a rollout decision, lift charts, and citations to unblock faster, safer launches.</li>
+    <ol class="space-y-4 text-sm">
+      <li class="card p-5"><span class="font-semibold">1. Tag your variants.</span> Add a feature flag to your log calls. No code changes to your retrieval logic.</li>
+      <li class="card p-5"><span class="font-semibold">2. Seer evaluates both.</span> Every query gets scored on recall, precision, and groundedness—automatically.</li>
+      <li class="card p-5"><span class="font-semibold">3. See the winner.</span> Statistical comparison shows which variant performs better, with confidence intervals.</li>
     </ol>
   </Section>
 
-  <Section title="Metrics we compute">
-    <ul class="grid md:grid-cols-3 gap-6 text-sm">
-      <li class="card p-5">Recall@k &amp; Precision@k</li>
-      <li class="card p-5">nDCG &amp; MRR</li>
-      <li class="card p-5">Groundedness &amp; hallucination rate</li>
-      <li class="card p-5">Citation accuracy &amp; robustness</li>
-      <li class="card p-5">Answerable (coverage)</li>
-      <li class="card p-5">Docs &amp; hops per query</li>
+  <Section title="What you compare">
+    <div class="grid md:grid-cols-2 gap-6">
+      <img src="/assets/ab-metrics.png" alt="Metrics comparison" class="card" loading="lazy" />
+      <img src="/assets/ab-queries.png" alt="Query-level analysis" class="card" loading="lazy" />
+    </div>
+    <ul class="grid md:grid-cols-3 gap-6 text-sm mt-6">
+      <li class="card p-5">Recall & Precision</li>
+      <li class="card p-5">F1 Score</li>
+      <li class="card p-5">Latency P50/P95</li>
+      <li class="card p-5">Query-level breakdown</li>
+      <li class="card p-5">Statistical significance</li>
+      <li class="card p-5">Worst performing queries</li>
     </ul>
   </Section>
 
-  <Section title="Example result">
-    <img src="/assets/ab_funnel.webp" alt="A/B funnel analytics" class="card" loading="lazy" />
-  </Section>
+  <Section title="Integration">
+    <div class="card p-6">
+      <p class="font-semibold mb-4">Add a feature flag to your logs</p>
+      <pre class="bg-surface text-sm p-4 rounded-xl overflow-x-auto"><code class="text-muted">{`# Variant A (baseline)
+client.log(task=query, context=docs, metadata={"feature_flag": "baseline"})
 
-  <Section title="Integrate in minutes">
-    <div class="grid md:grid-cols-2 gap-6 text-sm">
-      <div class="card p-6 space-y-3">
-        <h3 class="font-semibold">GitHub Actions</h3>
-        <pre class="bg-surface text-xs text-muted p-4 rounded-xl overflow-x-auto">{`- uses: seer-ai/action@v1
-  with:
-    dataset: ci-sanity
-    baseline-run: $SEER_BASELINE_RUN
-    candidate-run: $SEER_CANDIDATE_RUN
-`}</pre>
-      </div>
-      <div class="card p-6 space-y-3">
-        <h3 class="font-semibold">Direct API</h3>
-        <pre class="bg-surface text-xs text-muted p-4 rounded-xl overflow-x-auto">{`POST /v1/evaluations
-{
-  "dataset": "ci-sanity",
-  "runs": ["baseline", "candidate"],
-  "metrics": ["recall@5", "groundedness", "citations"]
-}
-`}</pre>
-      </div>
+# Variant B (new embeddings)
+client.log(task=query, context=docs, metadata={"feature_flag": "new-embeddings"})`}</code></pre>
+      <p class="text-sm text-muted mt-4">That's it. Seer automatically groups and compares variants.</p>
     </div>
   </Section>
 
-  <CTA title="Plug Seer into your CI" description="Send rollouts, receive verdicts &amp; charts back." />
+  <CTA 
+    title="Test your first change" 
+    description="Add feature flags. Compare variants. Ship with confidence."
+    cta="Read the docs"
+    href="https://docs.seersearch.com/seer/change-testing" />
 </Base>
