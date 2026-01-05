@@ -6,42 +6,88 @@ import MetricCard from '../components/MetricCard.astro';
 import ComparisonTable from '../components/ComparisonTable.astro';
 import CTA from '../components/CTA.astro';
 ---
-<Base title="Seer — Automated search evaluation" description="Self-improving search systems powered by compact evaluator models for change testing and production monitoring.">
+<Base title="Seer — Stop guessing on retrieval quality" description="Automatic quality metrics for RAG. Ship retrieval changes with confidence. Catch regressions before users do.">
   <Hero
-    title="Production-grade AI search"
-    subtitle="Auto-evaluate every retrieval, validate citations, and catch regressions before users do."
-    visualLabel="Evaluator dashboard preview"
-    img="/assets/perf_chats_1.webp" />
+    title="Stop guessing on retrieval quality."
+    subtitle="Automatic quality metrics for RAG. Ship retrieval changes with confidence. Catch regressions before users do."
+    visualLabel="Seer monitoring dashboard"
+    img="/assets/monitoring-dashboard.png" />
 
-  <Section title="Why Seer">
-    <div class="grid md:grid-cols-3 gap-6">
-      <MetricCard title="Scalable SOTA-level accuracy" desc="Seer’s 4B matches GPT‑5 on context evals with low cost and latency." />
-      <MetricCard title="A/B test retrieval changes instantly" desc="Evaluate diffs on unlabeled production traffic and wire evaluation into CI or staging rollouts." />
-      <MetricCard title="Monitor production quality continuously" desc="Track recall, groundedness, and coverage in real time so regressions never blindside customers." />
+  <Section title="5 lines to start measuring">
+    <div class="card p-6">
+      <pre class="bg-surface text-sm p-4 rounded-xl overflow-x-auto"><code class="text-muted">{`from seer import SeerClient
+
+client = SeerClient()  # reads SEER_API_KEY from env
+
+client.log(
+    task="How do I reset my password?",
+    context=retriever.get_passages(query)
+)
+# Seer evaluates recall, precision, groundedness automatically`}</code></pre>
+      <p class="text-sm text-muted mt-4">No labels, no annotation, no manual review. <a href="https://docs.seersearch.com/seer/quickstart" class="text-primary hover:underline">Learn more →</a></p>
     </div>
   </Section>
 
-  <Section title="What teams automate with Seer">
-    <div class="grid md:grid-cols-2 gap-6 text-sm">
-      <div class="card p-6 space-y-2">
-        <h3 class="font-semibold">Change testing</h3>
-        <p class="text-muted">Evaluate retrieval algorithm updates on unlabeled data, measure lift across recall, precision, and groundedness, and ship the winning variant confidently.</p>
+  <Section title="Problems we solve">
+    <div class="grid md:grid-cols-3 gap-6">
+      <MetricCard 
+        title="Manual annotation doesn't scale" 
+        desc="Evaluate every production query with zero labels. Seer understands context quality automatically." />
+      <MetricCard 
+        title="You only find regressions when users complain" 
+        desc="Get alerts within minutes of quality dropping. See exactly which queries failed and why." />
+      <MetricCard 
+        title="Shipping changes is a leap of faith" 
+        desc="Instantly compare A/B variants with statistical confidence. Know which version wins." />
+    </div>
+  </Section>
+
+  <Section title="By the numbers">
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+      <div class="card p-5 md:p-6 flex flex-col items-center text-center h-full justify-center min-h-[140px]">
+        <p class="text-4xl md:text-5xl font-bold text-emerald-400">38×</p>
+        <p class="text-sm font-medium mt-2">cheaper than GPT-5</p>
+        <p class="text-xs text-muted mt-1">$160/mo for 1M evals</p>
       </div>
-      <div class="card p-6 space-y-2">
-        <h3 class="font-semibold">Production monitoring</h3>
-        <p class="text-muted">Stream evaluator scores from live traffic to catch drift, route alerts, and keep a pulse on mission-critical search experiences.</p>
+      <div class="card p-5 md:p-6 flex flex-col items-center text-center h-full justify-center min-h-[140px]">
+        <p class="text-4xl md:text-5xl font-bold text-emerald-400">0.87</p>
+        <p class="text-sm font-medium mt-2">F1 score</p>
+        <p class="text-xs text-muted mt-1">GPT-5 level accuracy</p>
       </div>
-      <div class="card p-6 space-y-2">
-        <h3 class="font-semibold">Citation robustness</h3>
-        <p class="text-muted">Audit whether every answer cites the passages that actually cover each fact—perfect for regulated workflows in finance, healthcare, and legal.</p>
+      <div class="card p-5 md:p-6 flex flex-col items-center text-center h-full justify-center min-h-[140px]">
+        <p class="text-4xl md:text-5xl font-bold text-emerald-400">10s</p>
+        <p class="text-sm font-medium mt-2">per evaluation</p>
+        <p class="text-xs text-muted mt-1">vs. weeks of annotation</p>
       </div>
-      <div class="card p-6 space-y-2">
-        <h3 class="font-semibold">Index gap analysis</h3>
-        <p class="text-muted">Use Seer’s atomic fact breakdowns to spot missing content categories and prioritize new documents or data sources.</p>
+      <div class="card p-5 md:p-6 flex flex-col items-center text-center h-full justify-center min-h-[140px]">
+        <p class="text-4xl md:text-5xl font-bold text-emerald-400">5</p>
+        <p class="text-sm font-medium mt-2">lines to start</p>
+        <p class="text-xs text-muted mt-1">Drop-in Python SDK</p>
       </div>
-      <div class="card p-6 space-y-2 md:col-span-2">
-        <h3 class="font-semibold">Continuous search improvements</h3>
-        <p class="text-muted">Feed evaluator artifacts into embedding retraining, cache tuning, and routing logic so search quality improves the more your users interact.</p>
+    </div>
+  </Section>
+
+  <Section title="What you can do">
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="card overflow-hidden flex flex-col">
+        <div class="h-64 md:h-72 overflow-hidden bg-black/20 flex items-center justify-center p-2">
+          <img src="/assets/monitoring-dashboard.png" alt="Production monitoring" class="max-w-full max-h-full object-contain rounded" loading="lazy" />
+        </div>
+        <div class="p-6 flex-1 flex flex-col">
+          <h3 class="font-semibold text-lg">Production Monitoring</h3>
+          <p class="text-sm text-muted mt-2 flex-1">Track recall, precision, and latency across all queries. Get alerts when quality drops.</p>
+          <a href="/products/monitoring" class="text-sm text-primary hover:underline mt-4 inline-block">Learn how it works →</a>
+        </div>
+      </div>
+      <div class="card overflow-hidden flex flex-col">
+        <div class="h-64 md:h-72 overflow-hidden bg-black/20 flex items-center justify-center p-2">
+          <img src="/assets/ab-metrics.png" alt="Change testing" class="max-w-full max-h-full object-contain rounded" loading="lazy" />
+        </div>
+        <div class="p-6 flex-1 flex flex-col">
+          <h3 class="font-semibold text-lg">Change Testing</h3>
+          <p class="text-sm text-muted mt-2 flex-1">Compare retrieval variants on real traffic. See which embedding or reranker wins.</p>
+          <a href="/products/change-testing" class="text-sm text-primary hover:underline mt-4 inline-block">Learn how it works →</a>
+        </div>
       </div>
     </div>
   </Section>
@@ -50,22 +96,9 @@ import CTA from '../components/CTA.astro';
     <ComparisonTable />
   </Section>
 
-  <Section title="Why small, open evaluators win">
-    <div class="grid md:grid-cols-3 gap-6 text-sm">
-      <div class="card p-6 space-y-2">
-        <h3 class="font-semibold">Accuracy without lock-in</h3>
-        <p class="text-muted">Fine-tuned open models deliver SOTA accuracy while staying private to your environment.</p>
-      </div>
-      <div class="card p-6 space-y-2">
-        <h3 class="font-semibold">Lower cost & faster feedback</h3>
-        <p class="text-muted">Run millions of evaluations for a fraction of closed-model pricing, enabling tighter iteration loops.</p>
-      </div>
-      <div class="card p-6 space-y-2">
-        <h3 class="font-semibold">Deploy anywhere</h3>
-        <p class="text-muted">Small models scale on commodity GPUs or your own secure cloud with headroom for customization.</p>
-      </div>
-    </div>
-  </Section>
-
-  <CTA />
+  <CTA 
+    title="See your retrieval quality in 10 minutes" 
+    description="Read the docs and start logging. No sales call required."
+    cta="Read the docs"
+    href="https://docs.seersearch.com/seer/quickstart" />
 </Base>

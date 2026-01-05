@@ -1,52 +1,88 @@
 ---
 import { benchmarks, monthlyEvalPricing } from '../content/copy';
----
-<div class="space-y-6">
-  <table class="w-full text-sm card p-6">
-    <thead class="text-left text-muted">
-      <tr>
-        <th class="py-2">Model</th>
-        <th>Accuracy</th>
-        <th>Macro F1</th>
-        <th>Micro F1</th>
-      </tr>
-    </thead>
-    <tbody>
-      {benchmarks
-        .filter((b) => b.model !== 'Claude 4 Sonnet')
-        .map((b) => (
-        <tr>
-          <td>{b.model}</td>
-          <td>{b.accuracy.toFixed ? b.accuracy.toFixed(3) : b.accuracy}</td>
-          <td>{b.macroF1}</td>
-          <td>{b.microF1}</td>
-        </tr>
-      ))}
-    </tbody>
-  </table>
 
-  <table class="w-full text-sm card p-6">
-    <thead class="text-left text-muted">
-      <tr>
-        <th class="py-2">Monthly Evals</th>
-        <th>Seer-4B</th>
-        <th>Seer-1.7B</th>
-        <th class="text-right">GPT-5</th>
-        <th class="text-right">GPT-5-mini</th>
-        <th class="text-right">GPT-5-nano</th>
-      </tr>
-    </thead>
-    <tbody>
-      {monthlyEvalPricing.map((row) => (
-        <tr>
-          <td>{row.monthlyEvals}</td>
-          <td>{row.seer4B}</td>
-          <td>{row.seer1_7B}</td>
-          <td class="text-right">{row.gpt5}</td>
-          <td class="text-right">{row.gpt5Mini}</td>
-          <td class="text-right">{row.gpt5Nano}</td>
-        </tr>
-      ))}
-    </tbody>
-  </table>
+// Sort benchmarks by Micro F1 descending for better presentation
+const sortedBenchmarks = [...benchmarks]
+  .filter((b) => b.model !== 'Claude 4 Sonnet')
+  .sort((a, b) => b.microF1 - a.microF1);
+---
+<div class="space-y-8">
+  <!-- Accuracy Benchmarks -->
+  <div class="card overflow-hidden">
+    <div class="p-4 md:p-6 border-b border-border">
+      <h3 class="font-semibold">Accuracy Comparison</h3>
+      <p class="text-sm text-muted mt-1">Context evaluation accuracy on our benchmark dataset</p>
+    </div>
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm">
+        <thead>
+          <tr class="border-b border-border bg-surface/50">
+            <th class="text-left py-3 px-4 md:px-6 font-medium text-muted">Model</th>
+            <th class="text-right py-3 px-4 md:px-6 font-medium text-muted">Accuracy</th>
+            <th class="text-right py-3 px-4 md:px-6 font-medium text-muted">Macro F1</th>
+            <th class="text-right py-3 px-4 md:px-6 font-medium text-muted">Micro F1</th>
+          </tr>
+        </thead>
+        <tbody>
+          {sortedBenchmarks.map((b, i) => {
+            const isSeer = b.model.includes('Seer');
+            return (
+              <tr class:list={[
+                "border-b border-border/50 transition-colors",
+                isSeer ? "bg-emerald-500/10 hover:bg-emerald-500/15" : "hover:bg-surface/50",
+              ]}>
+                <td class:list={["py-3 px-4 md:px-6", isSeer && "font-semibold text-emerald-400"]}>
+                  {b.model}
+                  {isSeer && <span class="ml-2 text-xs bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded-full">Our model</span>}
+                </td>
+                <td class="text-right py-3 px-4 md:px-6 font-mono text-sm">{b.accuracy.toFixed(3)}</td>
+                <td class="text-right py-3 px-4 md:px-6 font-mono text-sm">{b.macroF1}</td>
+                <td class:list={["text-right py-3 px-4 md:px-6 font-mono text-sm", isSeer && "font-semibold text-emerald-400"]}>{b.microF1}</td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Pricing Comparison -->
+  <div class="card overflow-hidden">
+    <div class="p-4 md:p-6 border-b border-border">
+      <h3 class="font-semibold">Monthly Cost Comparison</h3>
+      <p class="text-sm text-muted mt-1">Estimated cost at different evaluation volumes</p>
+    </div>
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm">
+        <thead>
+          <tr class="border-b border-border bg-surface/50">
+            <th class="text-left py-3 px-4 md:px-6 font-medium text-muted">Monthly Evals</th>
+            <th class="text-right py-3 px-4 md:px-6 font-medium text-emerald-400">Seer-4B</th>
+            <th class="text-right py-3 px-4 md:px-6 font-medium text-emerald-400">Seer-1.7B</th>
+            <th class="text-right py-3 px-4 md:px-6 font-medium text-muted">GPT-5</th>
+            <th class="text-right py-3 px-4 md:px-6 font-medium text-muted">GPT-5-mini</th>
+            <th class="text-right py-3 px-4 md:px-6 font-medium text-muted">GPT-5-nano</th>
+          </tr>
+        </thead>
+        <tbody>
+          {monthlyEvalPricing.map((row, i) => (
+            <tr class:list={[
+              "border-b border-border/50 hover:bg-surface/50 transition-colors",
+              i === monthlyEvalPricing.length - 1 && "border-b-0"
+            ]}>
+              <td class="py-3 px-4 md:px-6 font-medium">{row.monthlyEvals}</td>
+              <td class="text-right py-3 px-4 md:px-6 font-mono text-sm font-semibold text-emerald-400">{row.seer4B}</td>
+              <td class="text-right py-3 px-4 md:px-6 font-mono text-sm font-semibold text-emerald-400">{row.seer1_7B}</td>
+              <td class="text-right py-3 px-4 md:px-6 font-mono text-sm text-muted">{row.gpt5}</td>
+              <td class="text-right py-3 px-4 md:px-6 font-mono text-sm text-muted">{row.gpt5Mini}</td>
+              <td class="text-right py-3 px-4 md:px-6 font-mono text-sm text-muted">{row.gpt5Nano}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <div class="px-4 md:px-6 py-3 border-t border-border/50">
+      <p class="text-xs text-muted">Seer pricing based on hosted inference. Self-hosted options available for enterprise.</p>
+    </div>
+  </div>
 </div>
